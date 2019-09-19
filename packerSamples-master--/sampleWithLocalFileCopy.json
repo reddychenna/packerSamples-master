@@ -1,0 +1,31 @@
+{
+    "variables" : {
+        "region" : "us-east-2"
+    },
+    "builders" : [
+        {
+            "type" : "amazon-ebs",
+            "profile" : "default",
+            "region" : "{{user `region`}}",
+            "instance_type" : "t2.micro",
+	    "source_ami_filter": {
+                 "filters": {
+                     "virtualization-type": "hvm",
+                     "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+                     "root-device-type": "ebs"
+		 },
+	      "most_recent" : "true" 	 
+            },
+            "ssh_username" : "ubuntu",
+            "ami_name" : "muniUbuntuDocker",
+            "ami_description" : "Ubuntu Amazon Linux Local File Copy"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "file",
+            "source": "./MyInputFile.txt",
+            "destination": "/home/ubuntu/"
+        }
+    ]
+}

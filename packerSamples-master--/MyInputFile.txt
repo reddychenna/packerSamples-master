@@ -1,0 +1,2 @@
+This is a sample text file to be copied in the AMI image created.
+This is file can be replaced with a library ro be copied into the image.

@@ -1,0 +1,31 @@
+{
+    "builders": [
+        {
+            "type": "azure-arm",
+            "subscription_id": "YOUR_SUBSCRIPTION_ID",
+            "client_id": "{{user `client_id`}}",
+            "client_secret": "{{user `client_secret`}}",
+            "tenant_id": "{{user `tenant_id`}}",
+            "managed_image_resource_group_name": "myResourceGroup",
+            "managed_image_name": "customLinux-{{isotime \"2006-01-02-24\"}}",
+            "os_type": "Linux",
+            "image_publisher": "Canonical",
+            "image_offer": "UbuntuServer",
+            "image_sku": "16.04-LTS",
+            "azure_tags": {
+                "dept": "DevOps",
+                "task": "Image deployment"
+            },
+            "location": "East US",
+            "vm_size": "Standard_DS2_v2"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sudo apt-get -y update"
+            ]
+        }
+    ]
+}
